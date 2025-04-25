@@ -1,10 +1,10 @@
 # https://docs.docker.com/compose/compose-file/
 
 services:
-  fastapi_app:  # Name your service
-    build: .  # Build the image from the current directory (.)
-    command: ["uvicorn", "angle_to_geo.main:app", "--host", "0.0.0.0", "--reload"]
+  mlflow:
+    image: ghcr.io/mlflow/mlflow:v{{cookiecutter.mlflow_version}}
     ports:
-      - "8000:8000"  # Map container port 8000 to host port 8000
-    volumes:
-      - ./src:/app/src  # Mount your source code directory
+      - 5000:5000
+    environment:
+      - MLFLOW_HOST=0.0.0.0
+    command: mlflow server
