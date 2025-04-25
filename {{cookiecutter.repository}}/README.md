@@ -31,6 +31,7 @@ uv run {{cookiecutter.repository}}
 Test the example API with Docker:
 ```bash	
 uv add fastapi uvicorn	
+uv run just package	
 
 # Invoke docker compose	
 uv run just docker-compose
