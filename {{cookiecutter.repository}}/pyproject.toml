@@ -71,7 +71,8 @@ python_version = "3.13"
 check_untyped_defs = true
 ignore_missing_imports = true
 strict = false
-disable_error_code = "import-untyped"
+disable_error_code = ["import-untyped", "disallow-untyped-decorators"]
+# See https://mypy.readthedocs.io/en/stable/config_file.html#untyped-definitions-and-calls
 
 [tool.pytest.ini_options]
 addopts = "--verbosity=2"

@@ -9,4 +9,6 @@ COPY ./src /app
 ENV PYTHONPATH="${PYTHONPATH}:/app"
 WORKDIR /app
 
-CMD ["uvicorn", "example_app.main:app", "--host", "0.0.0.0"]
+CMD ["{{cookiecutter.repository}}", "--help"]
+# Example command
+# CMD ["uvicorn", "example_app.main:app", "--host", "0.0.0.0"]
