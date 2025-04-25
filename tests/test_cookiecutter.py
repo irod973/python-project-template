@@ -17,7 +17,6 @@ COMMANDS = [
     "uv run just project",
     "uv run just package",
     "uv run just docker",
-    "uv run just mlflow-doctor",
 ]
 
 # %% TESTS
@@ -33,7 +32,6 @@ def test_project_generation(cookies: Cookies) -> None:
         "version": "1.0.0",
         "description": "A test project.",
         "python_version": "3.13",
-        "mlflow_version": "2.20.3",
     }
     repository = context['name'].lower().replace(' ', '-')
     package = repository.replace('-', '_')
@@ -54,7 +52,6 @@ def test_project_generation(cookies: Cookies) -> None:
         "version": context['version'],
         "description": context['description'],
         "python_version": context['python_version'],
-        "mlflow_version": context['mlflow_version'],
     }
     # - commands
     shell = Subprocess(cwd=result.project_path)

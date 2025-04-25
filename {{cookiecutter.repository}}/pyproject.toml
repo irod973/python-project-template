@@ -9,12 +9,10 @@ version = "{{cookiecutter.version}}"
 description = "{{cookiecutter.description}}"
 authors = [{ name = "{{cookiecutter.user}}" }]
 readme = "README.md"
-license = { file = "LICENSE.txt" }
-keywords = ["mlops", "python", "package"]
+license = "{{cookiecutter.license}}"
 requires-python = ">={{cookiecutter.python_version}}"
 dependencies = [
     "hatchling>=1.27.0",
-    "mlflow>={{cookiecutter.mlflow_version}}",
 ]
 
 # LINKS
@@ -24,12 +22,10 @@ Homepage = "https://github.com/{{cookiecutter.user}}/{{cookiecutter.repository}}
 Documentation = "https://{{cookiecutter.user}}.github.io/{{cookiecutter.repository}}/"
 Repository = "https://github.com/{{cookiecutter.user}}/{{cookiecutter.repository}}e"
 "Bug Tracker" = "https://github.com/{{cookiecutter.user}}/{{cookiecutter.repository}}/issues"
-Changelog = "https://github.com/{{cookiecutter.user}}/{{cookiecutter.repository}}/blob/main/CHANGELOG.md"
 
 # SCRIPTS
 
 [project.scripts]
-{{cookiecutter.repository}} = "{{cookiecutter.package}}.scripts:main"
 
 # DEPENDENCIES
 
@@ -47,12 +43,11 @@ check = [
 commit = ["commitizen>=4.4.1", "pre-commit>=4.1.0"]
 dev = ["rust-just>=1.39.0"]
 doc = ["pdoc>=15.0.1"]
-notebook = ["ipykernel>=6.29.5", "nbformat>=5.10.4"]
 
 # TOOLS
 
 [tool.uv]
-default-groups = ["check", "commit", "dev", "doc", "notebook"]
+default-groups = ["check", "commit", "dev", "doc"]
 
 [tool.bandit]
 targets = ["src"]
@@ -74,6 +69,9 @@ pretty = true
 python_version = "3.13"
 check_untyped_defs = true
 ignore_missing_imports = true
+strict = true
+disable_error_code = "import-untyped"
+src = ["src"]
 
 [tool.pytest.ini_options]
 addopts = "--verbosity=2"
@@ -84,6 +82,9 @@ fix = true
 indent-width = 4
 line-length = 100
 target-version = "py313"
+
+[tool.ruff.lint]
+extend-select = ["I"]
 
 [tool.ruff.format]
 docstring-code-format = true

@@ -10,7 +10,7 @@ docker-build tag="latest": package-build
 # start docker compose
 [group('docker')]
 docker-compose:
-    docker compose up
+    docker compose up --build
 
 # run latest docker image
 [group('docker')]

@@ -75,8 +75,6 @@ git init
 
 Use the provided `just` commands to manage your development workflow:
 
-Use the provided Invoke tasks to manage your development workflow:
-
 - `uv run just check`: Run code quality, type, security, and test checks.
 - `uv run just clean`: Clean up generated files.
 - `uv run just commit`: Commit changes to your repository.
