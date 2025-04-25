@@ -3,7 +3,7 @@
     "name": "Python Project",
     "repository": "{{cookiecutter.name.lower().replace(' ', '-')}}",
     "package": "{{cookiecutter.repository.replace('-', '_')}}",
-    "license": "NA",
+    "license": "MIT",
     "version": "0.1.0",
     "description": "TODO",
     "python_version": "3.12",
