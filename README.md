@@ -36,7 +36,10 @@ Uv Integration: Effortless dependency management and packaging with [uv](https:/
 1. **Generate your project:**
 
 ```bash
-pip install cookiecutter
+# With uv:
+uv tool install cookiecutter
+# With pip:
+# pip install cookiecutter
 cookiecutter gh:irod973/python-project-template
 ```
 
@@ -58,6 +61,7 @@ cd {{ cookiecutter.repository }}
 git init
 # Should also create remote repo, e.g. via Github web console
 # Then make first push e.g.
+# git add .
 # git commit -m "Initial commit"
 # git remote add origin https://github.com/irod973/{{myproject}}.git
 # git push -u origin main 
