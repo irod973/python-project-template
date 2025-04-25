@@ -3,7 +3,7 @@
 services:
   fastapi_app:  # Name your service
     build: .  # Build the image from the current directory (.)
-    command: ["uvicorn", "angle_to_geo.main:app", "--host", "0.0.0.0", "--reload"]
+    command: ["uvicorn", "{{cookiecutter.repository}}.main:app", "--host", "0.0.0.0", "--reload"]
     ports:
       - "8000:8000"  # Map container port 8000 to host port 8000
     volumes:

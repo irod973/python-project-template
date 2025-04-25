@@ -6,7 +6,7 @@
 [![License](https://img.shields.io/github/license/{{cookiecutter.user}}/{{cookiecutter.repository}})](https://github.com/{{cookiecutter.user}}/{{cookiecutter.repository}}/blob/main/LICENCE.txt)
 [![Release](https://img.shields.io/github/v/release/{{cookiecutter.user}}/{{cookiecutter.repository}})](https://github.com/{{cookiecutter.user}}/{{cookiecutter.repository}}/releases)
 
-# Description
+# Description	
 
 {{cookiecutter.description}}.
 
@@ -14,67 +14,52 @@
 
 # Installation
 
-Initialize your project with the provided invoke command.
-```bash
-# Install dependencies and pre-commit hooks
-invoke installs
+Initialize your project with the provided `just` command.
+```bash	
+# Install dependencies and pre-commit hooks	
+uv run just install	
 ```
-
 # Usage
 
 (The source comes with an example python package and an example FastAPI app. Delete this comment and add details for your application.)
 
 Test the example package
 ```bash
-poetry run {{cookiecutter.repository}}
+uv run {{cookiecutter.repository}}
 ```
 
 Test the example API with Docker:
-```bash
-poetry add fastapi uvicorn
+```bash	
+uv add fastapi uvicorn	
 
-# Invoke docker compose
-invoke containers
+# Invoke docker compose	
+uv run just docker-compose
 
-# Or run with docker compose
-docker compose up --build
+# Or run with docker compose	
+docker compose up --build	
 
-# Or run with docker
-# Note: specify platform if running on Apple M chip 
-docker build --platform linux/amd64 -t angle-to-geo-image -f Dockerfile .
-docker run -it --platform linux/amd64 --name angle-to-geo-test-ctr -p 8000:8000 angle-to-geo-image
+# Or run with docker	
+# Note: specify platform if running on Apple M chip 	
+docker build --platform linux/amd64 -t {{cookiecutter.repository}}-image -f Dockerfile .	
+docker run -it --platform linux/amd64 --name {{cookiecutter.repository}}-ctr -p 8000:8000 {{cookiecutter.repository}}-image	
 ```
 
+Test the API using the local environment:
 ```bash
-poetry add fastapi uvicorn
-# Test the API using the local environment
-cd src
-poetry run uvicorn example_app.main:app --reload
+cd src	
+uv run uvicorn example_app.main:app --reload
 ```
 
 ## Development Features
 
+(This section was copied into the created project's README so tool info is available to users.)
+
 * **Streamlined Project Structure:** A well-defined directory layout for source code, tests, documentation, tasks, and Docker configurations.
-* **Poetry Integration:** Effortless dependency management and packaging with [Poetry](https://python-poetry.org/).
+Uv Integration: Effortless dependency management and packaging with [uv](https://docs.astral.sh/uv/).
 * **Automated Testing and Checks:** Pre-configured workflows using [Pytest](https://docs.pytest.org/), [Ruff](https://docs.astral.sh/ruff/), [Mypy](https://mypy.readthedocs.io/), [Bandit](https://bandit.readthedocs.io/), and [Coverage](https://coverage.readthedocs.io/) to ensure code quality, style, security, and type safety.
 * **Pre-commit Hooks:** Automatic code formatting and linting with [Ruff](https://docs.astral.sh/ruff/) and other pre-commit hooks to maintain consistency.
 * **Dockerized Deployment:** Dockerfile and docker-compose.yml for building and running the package within a containerized environment ([Docker](https://www.docker.com/)).
-* **Invoke Task Automation:** [PyInvoke](https://www.pyinvoke.org/) tasks to simplify development workflows such as cleaning, installing, formatting, checking, building, documenting, and running MLflow projects.
+* **uv+just Task Automation:** [just](https://github.com/casey/just) commands to simplify development workflows such as cleaning, installing, formatting, checking, building, documenting and running the project.
 * **Comprehensive Documentation:** [pdoc](https://pdoc.dev/) generates API documentation, and Markdown files provide clear usage instructions.
 * **GitHub Workflow Integration:** Continuous integration and deployment workflows are set up using [GitHub Actions](https://github.com/features/actions), automating testing, checks, and publishing.
-
-Use the provided Invoke tasks to manage your development workflow:
-
-- `invoke installs`: Install dependencies and pre-commit hooks.
-- `invoke formats`: Format your code.
-- `invoke checks`: Run code quality, type, security, and test checks.
-- `invoke docs`: Generate API documentation.
-- `invoke packages`: Build your Python package.
-- `invoke containers`: Build and run your Docker image.
-
-### Using Ruff with PyCharm
-
-Note: First version of [Ruff plugin](https://github.com/koxudaxi/ruff-pycharm-plugin) would have issues (v0.0.27) apparently due to my PyCharm version (2023.2).
-
-I upgraded to (2024.2) and Ruff 0.0.39 and now autosave works.
 

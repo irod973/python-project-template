@@ -23,11 +23,11 @@ You have the freedom to structure your `src/` and `tests/` directories according
 (This section was copied into the created project's README so tool info is available to users.)
 
 * **Streamlined Project Structure:** A well-defined directory layout for source code, tests, documentation, tasks, and Docker configurations.
-* **Poetry Integration:** Effortless dependency management and packaging with [Poetry](https://python-poetry.org/).
+Uv Integration: Effortless dependency management and packaging with [uv](https://docs.astral.sh/uv/).
 * **Automated Testing and Checks:** Pre-configured workflows using [Pytest](https://docs.pytest.org/), [Ruff](https://docs.astral.sh/ruff/), [Mypy](https://mypy.readthedocs.io/), [Bandit](https://bandit.readthedocs.io/), and [Coverage](https://coverage.readthedocs.io/) to ensure code quality, style, security, and type safety.
 * **Pre-commit Hooks:** Automatic code formatting and linting with [Ruff](https://docs.astral.sh/ruff/) and other pre-commit hooks to maintain consistency.
 * **Dockerized Deployment:** Dockerfile and docker-compose.yml for building and running the package within a containerized environment ([Docker](https://www.docker.com/)).
-* **Invoke Task Automation:** [PyInvoke](https://www.pyinvoke.org/) tasks to simplify development workflows such as cleaning, installing, formatting, checking, building, documenting and running the project.
+* **uv+just Task Automation:** [just](https://github.com/casey/just) commands to simplify development workflows such as cleaning, installing, formatting, checking, building, documenting and running the project.
 * **Comprehensive Documentation:** [pdoc](https://pdoc.dev/) generates API documentation, and Markdown files provide clear usage instructions.
 * **GitHub Workflow Integration:** Continuous integration and deployment workflows are set up using [GitHub Actions](https://github.com/features/actions), automating testing, checks, and publishing.
 
@@ -67,20 +67,23 @@ git init
 
 - `src/{{cookiecutter.package}}`: Your Python package source code.
 - `tests/`: Unit tests for your package.
-- `tasks/`: PyInvoke tasks for automation.
+- `tasks/`: `just` commands for automation.
 - `Dockerfile`: Configuration for building your Docker image.
 - `docker-compose.yml`: Orchestration file for running your project.
 
 4. **Start developing!**
 
-Use the provided Invoke tasks to manage your development workflow:
+Use the provided `just` commands to manage your development workflow:
 
-- `invoke installs`: Install dependencies and pre-commit hooks.
-- `invoke formats`: Format your code.
-- `invoke checks`: Run code quality, type, security, and test checks.
-- `invoke docs`: Generate API documentation.
-- `invoke packages`: Build your Python package.
-- `invoke containers`: Build and run your Docker image.
+- `uv run just check`: Run code quality, type, security, and test checks.
+- `uv run just clean`: Clean up generated files.
+- `uv run just commit`: Commit changes to your repository.
+- `uv run just doc`: Generate API documentation.
+- `uv run just docker`: Build and run your Docker image.
+- `uv run just format`: Format your code with Ruff.
+- `uv run just install`: Install dependencies, pre-commit hooks, and GitHub rulesets.
+- `uv run just package`: Build your Python package.
+- `uv run just project`: Run the project in the CLI.
 
 ## Example Usage
 
