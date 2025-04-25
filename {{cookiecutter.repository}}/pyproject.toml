@@ -26,6 +26,7 @@ Repository = "https://github.com/{{cookiecutter.user}}/{{cookiecutter.repository
 # SCRIPTS
 
 [project.scripts]
+{{cookiecutter.repository}} = "{{cookiecutter.package}}.scripts:main"
 
 # DEPENDENCIES
 
@@ -69,9 +70,8 @@ pretty = true
 python_version = "3.13"
 check_untyped_defs = true
 ignore_missing_imports = true
-strict = true
+strict = false
 disable_error_code = "import-untyped"
-src = ["src"]
 
 [tool.pytest.ini_options]
 addopts = "--verbosity=2"

@@ -28,7 +28,7 @@ def test_project_generation(cookies: Cookies) -> None:
     context = {
         "user": "tester",
         "name": "MLOps 123",
-        "license": "apache-2",
+        "license": "Apache-2.0",  # Note: needs to be a "valid SPDX identifier"
         "version": "1.0.0",
         "description": "A test project.",
         "python_version": "3.13",
