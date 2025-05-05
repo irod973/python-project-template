@@ -64,3 +64,14 @@ Uv Integration: Effortless dependency management and packaging with [uv](https:/
 * **Comprehensive Documentation:** [pdoc](https://pdoc.dev/) generates API documentation, and Markdown files provide clear usage instructions.
 * **GitHub Workflow Integration:** Continuous integration and deployment workflows are set up using [GitHub Actions](https://github.com/features/actions), automating testing, checks, and publishing.
 
+Use the provided `just` commands to manage your development workflow:
+
+- `uv run just check`: Run code quality, type, security, and test checks.
+- `uv run just clean`: Clean up generated files.
+- `uv run just commit`: Commit changes to your repository.
+- `uv run just doc`: Generate API documentation.
+- `uv run just docker`: Build and run your Docker image.
+- `uv run just format`: Format your code with Ruff.
+- `uv run just install`: Install dependencies, pre-commit hooks, and GitHub rulesets.
+- `uv run just package`: Build your Python package.
+- `uv run just project`: Run the project in the CLI.
