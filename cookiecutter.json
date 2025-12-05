@@ -15,7 +15,6 @@
         "user": "GitHub User",
         "name": "Project Name",
         "repository": "GitHub Repository",
-        "package": "Python Package",
         "license": "Project License",
         "version": "Project Version",
         "description": "Project Description",

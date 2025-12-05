@@ -15,24 +15,13 @@
 # Installation
 
 Initialize your project with the provided `just` command.
-```bash	
+```shell
 # Install dependencies and pre-commit hooks	
 uv run just install	
 ```
 # Usage
 
-(The source comes with an example python package and an example FastAPI app. Delete this comment and add details for your application.)
-
-Test the example package
-```bash
-uv run {{cookiecutter.repository}}
-```
-
-Test the example API with Docker:
-```bash	
-uv add fastapi uvicorn	
-uv run just package	
-
+```shell
 # Invoke docker compose	
 uv run just docker-compose
 
@@ -43,12 +32,6 @@ docker compose up --build
 # Note: specify platform if running on Apple M chip 	
 docker build --platform linux/amd64 -t {{cookiecutter.repository}}-image -f Dockerfile .	
 docker run -it --platform linux/amd64 --name {{cookiecutter.repository}}-ctr -p 8000:8000 {{cookiecutter.repository}}-image	
-```
-
-Test the API using the local environment:
-```bash
-cd src	
-uv run uvicorn example_app.main:app --reload
 ```
 
 ## Development Features
