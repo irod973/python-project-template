@@ -32,6 +32,10 @@ def test_project_generation(cookies: Cookies) -> None:
         "version": "1.0.0",
         "description": "A test project.",
         "python_version": "3.13",
+        "include_fastapi": "y",
+        "include_metaflow": "y",
+        "include_package": "y",
+        "coverage_threshold": 80,
     }
     repository = context['name'].lower().replace(' ', '-')
     package = repository.replace('-', '_')
@@ -44,14 +48,17 @@ def test_project_generation(cookies: Cookies) -> None:
     assert result.project_path.is_dir()
     assert result.project_path.name == repository
     assert result.context == {
-        "user": context['user'],
-        "name": context['name'],
+        "user": context["user"],
+        "name": context["name"],
         "package": package,
         "repository": repository,
-        "license": context['license'],
-        "version": context['version'],
-        "description": context['description'],
-        "python_version": context['python_version'],
+        "license": context["license"],
+        "version": context["version"],
+        "description": context["description"],
+        "python_version": context["python_version"],
+        "include_fastapi": context["include_fastapi"],
+        "include_metaflow": context["include_metaflow"],
+        "include_package": context["include_package"],
     }
     # - commands
     shell = Subprocess(cwd=result.project_path)
