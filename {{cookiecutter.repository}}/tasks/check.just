@@ -9,7 +9,7 @@ check-code:
 
 # check code coverage
 [group('check')]
-check-coverage numprocesses="auto" cov_fail_under="80":
+check-coverage numprocesses="auto" cov_fail_under="{{cookiecutter.coverage_threshold}}":
     {% raw %}uv run pytest --numprocesses={{numprocesses}} --cov={{SOURCES}} --cov-fail-under={{cov_fail_under}} {{TESTS}}{% endraw %}
 
 # check code format

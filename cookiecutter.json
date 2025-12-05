@@ -7,6 +7,10 @@
     "version": "0.1.0",
     "description": "TODO",
     "python_version": "3.12",
+    "include_fastapi": true,
+    "include_metaflow": true,
+    "include_package": true,
+    "coverage_threshold": 80,
     "__prompts__": {
         "user": "GitHub User",
         "name": "Project Name",
@@ -15,6 +19,10 @@
         "license": "Project License",
         "version": "Project Version",
         "description": "Project Description",
-        "python_version": "Python Version"
+        "python_version": "Python Version",
+        "include_fastapi": "Include FastAPI component? (y/n)",
+        "include_metaflow": "Include Metaflow component? (y/n)",
+        "include_package": "Include Python package component? (y/n)",
+        "coverage_threshold": "Minimum code coverage percentage (cov-fail-under)"
     }
 }
