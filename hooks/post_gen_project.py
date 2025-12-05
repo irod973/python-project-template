@@ -20,7 +20,7 @@ if is_false('{{cookiecutter.include_package}}'):
     if os.path.exists(workflow_path):
         os.remove(workflow_path)
     # Remove publish badge from README if present
-    readme_path = os.path.join('{{cookiecutter.repository}}', 'README.md')
+    readme_path = os.path.join('.', 'README.md')
     if os.path.exists(readme_path):
         with open(readme_path, 'r') as f:
             lines = f.readlines()
