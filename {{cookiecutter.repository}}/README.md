@@ -10,7 +10,7 @@
 
 {{cookiecutter.description}}.
 
-(This README is generated from a cookiecutter template. Delete this comment and modify your README!)
+This README is generated from a cookiecutter template. Delete this comment and modify your README!
 
 # Installation
 
@@ -20,6 +20,8 @@ Initialize your project with the provided `just` command.
 uv run just install	
 ```
 # Usage
+
+The provided template apps can be executed with the existing Docker templates. **Note:** Dependencies are not yet parametrized and need to be added using `uv add` 
 
 ```shell
 # Invoke docker compose	
@@ -35,8 +37,6 @@ docker run -it --platform linux/amd64 --name {{cookiecutter.repository}}-ctr -p 
 ```
 
 ## Development Features
-
-(This section was copied into the created project's README so tool info is available to users.)
 
 * **Streamlined Project Structure:** A well-defined directory layout for source code, tests, documentation, tasks, and Docker configurations.
 Uv Integration: Effortless dependency management and packaging with [uv](https://docs.astral.sh/uv/).
