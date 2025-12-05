@@ -75,3 +75,61 @@ Use the provided `just` commands to manage your development workflow:
 - `uv run just install`: Install dependencies, pre-commit hooks, and GitHub rulesets.
 - `uv run just package`: Build your Python package.
 - `uv run just project`: Run the project in the CLI.
+
+# Template Update Management
+
+This project template recommends using [Cruft](https://cruft.github.io/cruft/) to keep downstream projects up to date with template changes. Cruft tracks the template source and allows you to apply updates to your project, with the option to review and approve changes (e.g., via Pull Requests).
+
+## Keeping Your Project Up to Date
+
+1. **Initialize with Cruft**
+   - When creating a new project, use:
+     ```bash
+     cruft create https://github.com/{{cookiecutter.user}}/{{cookiecutter.repository}}.git
+     ```
+   - This will create your project and add a `.cruft.json` file to track the template source.
+
+2. **Update Your Project**
+   - When the template is updated, run:
+     ```bash
+     cruft update
+     ```
+   - Review the changes and resolve any conflicts. Commit the changes to your repository.
+
+3. **Automate Updates with Pull Requests**
+   - You can automate the update process and open a Pull Request for review using GitHub Actions. Add a workflow like the following to your downstream project:
+     ```yaml
+     # .github/workflows/template-update.yml
+     name: Update from Template
+     on:
+       schedule:
+         - cron: '0 0 * * 0'  # Weekly
+       workflow_dispatch:
+     jobs:
+       update-template:
+         runs-on: ubuntu-latest
+         steps:
+           - uses: actions/checkout@v4
+           - name: Set up Python
+             uses: actions/setup-python@v5
+             with:
+               python-version: '3.11'
+           - name: Install Cruft
+             run: pip install cruft
+           - name: Update from template
+             run: |
+               cruft update --skip-apply || true
+               git config user.name github-actions
+               git config user.email github-actions@github.com
+               git add .
+               git commit -m "Update from template" || echo "No changes to commit"
+               git push origin HEAD:template-update || true
+           - name: Create Pull Request
+             uses: peter-evans/create-pull-request@v6
+             with:
+               branch: template-update
+               title: "Update from template"
+               body: "Automated update from the project template. Please review and merge."
+     ```
+   - This workflow will check for template updates weekly and open a PR for review.
+
