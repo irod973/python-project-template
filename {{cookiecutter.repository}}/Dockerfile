@@ -1,14 +1,25 @@
 # https://docs.docker.com/engine/reference/builder/
+# https://docs.astral.sh/uv/guides/integration/docker/#intermediate-layers
 
-FROM ghcr.io/astral-sh/uv:python{{cookiecutter.python_version}}-bookworm
-COPY dist/*.whl .
-RUN uv pip install --system *.whl
-CMD ["{{cookiecutter.repository}}", "--help"]
+# Install uv
+FROM python:{{cookiecutter.python_version}}-slim
+COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
 
-COPY ./src /app
-ENV PYTHONPATH="${PYTHONPATH}:/app"
+# Change the working directory to the `app` directory
 WORKDIR /app
 
-CMD ["{{cookiecutter.repository}}", "--help"]
-# Example command
-# CMD ["uvicorn", "example_app.main:app", "--host", "0.0.0.0"]
+# Install dependencies
+RUN --mount=type=cache,target=/root/.cache/uv \
+    --mount=type=bind,source=uv.lock,target=uv.lock \
+    --mount=type=bind,source=pyproject.toml,target=pyproject.toml \
+    uv sync --locked --no-install-project
+
+# Copy the project into the image
+ADD . /app
+
+# Sync the project
+RUN --mount=type=cache,target=/root/.cache/uv \
+    uv sync --locked
+
+# Default command (overridden by docker-compose)
+CMD ["python", "--version"]

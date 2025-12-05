@@ -10,29 +10,20 @@
 
 {{cookiecutter.description}}.
 
-(This README is generated from a cookiecutter template. Delete this comment and modify your README!)
+This README is generated from a cookiecutter template. Delete this comment and modify your README!
 
 # Installation
 
 Initialize your project with the provided `just` command.
-```bash	
+```shell
 # Install dependencies and pre-commit hooks	
 uv run just install	
 ```
 # Usage
 
-(The source comes with an example python package and an example FastAPI app. Delete this comment and add details for your application.)
+The provided template apps can be executed with the existing Docker templates. **Note:** Dependencies are not yet parametrized and need to be added using `uv add` 
 
-Test the example package
-```bash
-uv run {{cookiecutter.repository}}
-```
-
-Test the example API with Docker:
-```bash	
-uv add fastapi uvicorn	
-uv run just package	
-
+```shell
 # Invoke docker compose	
 uv run just docker-compose
 
@@ -45,15 +36,7 @@ docker build --platform linux/amd64 -t {{cookiecutter.repository}}-image -f Dock
 docker run -it --platform linux/amd64 --name {{cookiecutter.repository}}-ctr -p 8000:8000 {{cookiecutter.repository}}-image	
 ```
 
-Test the API using the local environment:
-```bash
-cd src	
-uv run uvicorn example_app.main:app --reload
-```
-
 ## Development Features
-
-(This section was copied into the created project's README so tool info is available to users.)
 
 * **Streamlined Project Structure:** A well-defined directory layout for source code, tests, documentation, tasks, and Docker configurations.
 Uv Integration: Effortless dependency management and packaging with [uv](https://docs.astral.sh/uv/).
