@@ -47,7 +47,6 @@ dev =[
     "rust-just>=1.39.0",
     "locust>=2.31.8,<3.0.0",
     "pyinstrument>=4.7.3,<5.0.0",
-
 ]
 doc = ["pdoc>=15.0.1"]
 
