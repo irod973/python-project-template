@@ -1,7 +1,9 @@
 # {{cookiecutter.name}}
 
 [![check.yml](https://github.com/{{cookiecutter.user}}/{{cookiecutter.repository}}/actions/workflows/check.yml/badge.svg)](https://github.com/{{cookiecutter.user}}/{{cookiecutter.repository}}/actions/workflows/check.yml)
+{% if cookiecutter.include_package %}
 [![publish.yml](https://github.com/{{cookiecutter.user}}/{{cookiecutter.repository}}/actions/workflows/publish.yml/badge.svg)](https://github.com/{{cookiecutter.user}}/{{cookiecutter.repository}}/actions/workflows/publish.yml)
+{% endif %}
 [![Documentation](https://img.shields.io/badge/documentation-available-brightgreen.svg)](https://{{cookiecutter.user}}.github.io/{{cookiecutter.repository}}/)
 [![License](https://img.shields.io/github/license/{{cookiecutter.user}}/{{cookiecutter.repository}})](https://github.com/{{cookiecutter.user}}/{{cookiecutter.repository}}/blob/main/LICENCE.txt)
 [![Release](https://img.shields.io/github/v/release/{{cookiecutter.user}}/{{cookiecutter.repository}})](https://github.com/{{cookiecutter.user}}/{{cookiecutter.repository}}/releases)
@@ -10,7 +12,7 @@
 
 {{cookiecutter.description}}.
 
-This README is generated from a cookiecutter template. Delete this comment and modify your README!
+TODO: This README is generated from a cookiecutter template. Delete this comment and modify your README!
 
 # Installation
 
@@ -21,21 +23,40 @@ uv run just install
 ```
 # Usage
 
-The provided template apps can be executed with the existing Docker templates. **Note:** Dependencies are not yet parametrized and need to be added using `uv add` 
+TODO: Fill in with your project's details.
 
+{% if cookiecutter.include_torchvision %}
+## Torchvision app
+
+This template includes an example torchvision app and associated dependencies.
 ```shell
-# Invoke docker compose	
-uv run just docker-compose
-
-# Or run with docker compose	
-docker compose up --build	
-
-# Or run with docker	
-# Note: specify platform if running on Apple M chip 	
-docker build --platform linux/amd64 -t {{cookiecutter.repository}}-image -f Dockerfile .	
-docker run -it --platform linux/amd64 --name {{cookiecutter.repository}}-ctr -p 8000:8000 {{cookiecutter.repository}}-image	
+# Install dependencies
+uv sync --group torch --extra cpu  # or --extra cu128 if running in CUDA-enabled system
+# Then invoke docker compose	
+uv run just docker-compose torchvision_app
 ```
+{% endif %}
+{% if cookiecutter.include_metaflow %}
+## Metaflow app
 
+This template includes an example Metaflow app and associated dependencies.
+```shell
+# Install dependencies
+uv sync --group metaflow
+# Invoke docker compose	
+uv run just docker-compose metaflow_app
+```
+{% endif %}
+## FastAPI
+
+This template includes an example FastAPI app and associated dependencies.
+```shell
+# Install dependencies
+uv sync --group fastapi
+# Invoke docker compose
+uv run just docker-compose metaflow_app
+```
+{% endif %}
 ## Development Features
 
 * **Streamlined Project Structure:** A well-defined directory layout for source code, tests, documentation, tasks, and Docker configurations.

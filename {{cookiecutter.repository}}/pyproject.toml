@@ -49,11 +49,32 @@ dev =[
     "pyinstrument>=4.7.3,<5.0.0",
 ]
 doc = ["pdoc>=15.0.1"]
+{% if cookiecutter.include_torchvision %}
+torch = [
+    "torch>=2.7.0",
+    "torchvision>=0.22.0",
+]
+{% endif %}
+{% if cookiecutter.include_metaflow %}
+metaflow = [
+    "metaflow>=2.19.7",
+]
+{% endif %}
+{% if cookiecutter.include_fastapi %}
+fastapi = [
+    "fastapi>=0.123.10",
+    "uvicorn>=0.38.0",
+]
+{% endif %}
 
 # TOOLS
 
 [tool.uv]
 default-groups = ["check", "commit", "dev", "doc"]
+{% if cookiecutter.include_torchvision %}
+# torch
+# enable selecting with uv sync --group torch --extra {cpu, cu128}
+# https://docs.astral.sh/uv/guides/integration/pytorch/#configuring-accelerators-with-optional-dependencies
 conflicts = [
   [
     { extra = "cpu" },
@@ -61,18 +82,16 @@ conflicts = [
   ],
 ]
 
-[project.optional-dependencies]
-cpu = [
-  "torch>=2.7.0",
-  "torchvision>=0.22.0",
-]
-cu128 = [
-  "torch>=2.7.0",
-  "torchvision>=0.22.0",
-]
+#[project.optional-dependencies]
+#cpu = [
+#  "torch>=2.7.0",
+#  "torchvision>=0.22.0",
+#]
+#cu128 = [
+#  "torch>=2.7.0",
+#  "torchvision>=0.22.0",
+#]
 
-# https://docs.astral.sh/uv/guides/integration/pytorch/#configuring-accelerators-with-optional-dependencies
-# enable selecting with uv sync --extra {cpu, cu128}
 [tool.uv.sources]
 torch = [
   { index = "pytorch-cpu", extra = "cpu" },
@@ -92,7 +111,7 @@ explicit = true
 name = "pytorch-cu128"
 url = "https://download.pytorch.org/whl/cu128"
 explicit = true
-
+{% endif %}
 [tool.bandit]
 targets = ["src"]
 
