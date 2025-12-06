@@ -31,7 +31,7 @@ TODO: Fill in with your project's details.
 This template includes an example torchvision app and associated dependencies.
 ```shell
 # Install dependencies
-uv sync --group torch --extra cpu  # or --extra cu128 if running in CUDA-enabled system
+uv sync --extra cpu  # or --extra cu128 if running in CUDA-enabled system
 # Then invoke docker compose	
 uv run just docker-compose torchvision_app
 ```
@@ -47,6 +47,7 @@ uv sync --group metaflow
 uv run just docker-compose metaflow_app
 ```
 {% endif %}
+{% if cookiecutter.include_fastapi %}
 ## FastAPI
 
 This template includes an example FastAPI app and associated dependencies.

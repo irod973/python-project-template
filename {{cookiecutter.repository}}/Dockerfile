@@ -1,4 +1,6 @@
 # https://docs.docker.com/engine/reference/builder/
+# TODO: not convenient to have a single Dockerfile for all templates. add a docker/ subdirectory and use separate files. update docker-compose accordingly
+# TODO: debug torch application
 # https://docs.astral.sh/uv/guides/integration/docker/#intermediate-layers
 
 # Install uv
@@ -15,7 +17,7 @@ RUN --mount=type=cache,target=/root/.cache/uv \
     uv sync --locked --no-install-project
 
 # Copy the project into the image
-ADD . /app
+ADD src/ /app
 
 # Sync the project
 RUN --mount=type=cache,target=/root/.cache/uv \

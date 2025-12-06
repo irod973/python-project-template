@@ -5,7 +5,7 @@
     "package": "{{cookiecutter.repository.replace('-', '_')}}",
     "license": "MIT",
     "version": "0.1.0",
-    "description": "TODO",
+    "description": "TODO: Fill in description.",
     "python_version": "3.12",
     "include_fastapi": true,
     "include_metaflow": true,

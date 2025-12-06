@@ -49,12 +49,6 @@ dev =[
     "pyinstrument>=4.7.3,<5.0.0",
 ]
 doc = ["pdoc>=15.0.1"]
-{% if cookiecutter.include_torchvision %}
-torch = [
-    "torch>=2.7.0",
-    "torchvision>=0.22.0",
-]
-{% endif %}
 {% if cookiecutter.include_metaflow %}
 metaflow = [
     "metaflow>=2.19.7",
@@ -73,7 +67,7 @@ fastapi = [
 default-groups = ["check", "commit", "dev", "doc"]
 {% if cookiecutter.include_torchvision %}
 # torch
-# enable selecting with uv sync --group torch --extra {cpu, cu128}
+# enable selecting torch wheel based on environment with uv sync --extra {cpu, cu128}
 # https://docs.astral.sh/uv/guides/integration/pytorch/#configuring-accelerators-with-optional-dependencies
 conflicts = [
   [
@@ -82,15 +76,15 @@ conflicts = [
   ],
 ]
 
-#[project.optional-dependencies]
-#cpu = [
-#  "torch>=2.7.0",
-#  "torchvision>=0.22.0",
-#]
-#cu128 = [
-#  "torch>=2.7.0",
-#  "torchvision>=0.22.0",
-#]
+[project.optional-dependencies]
+cpu = [
+  "torch>=2.7.0",
+  "torchvision>=0.22.0",
+]
+cu128 = [
+  "torch>=2.7.0",
+  "torchvision>=0.22.0",
+]
 
 [tool.uv.sources]
 torch = [
@@ -162,6 +156,7 @@ convention = "google"
 
 # SYSTEMS
 
+# TODO: is this only for the package management?
 [build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"

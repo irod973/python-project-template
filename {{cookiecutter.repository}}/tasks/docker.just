@@ -9,8 +9,8 @@ docker-build tag="latest": package-build
 
 # start docker compose
 [group('docker')]
-docker-compose:
-    docker compose up --build
+docker-compose-service service:
+    docker compose up --build {{service}}
 
 # run latest docker image
 [group('docker')]
