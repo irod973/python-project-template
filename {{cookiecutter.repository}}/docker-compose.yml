@@ -1,7 +1,7 @@
 # https://docs.docker.com/compose/compose-file/
 
 services:
-  {% if cookiecutter.include_fastapi %}
+{% if cookiecutter.include_fastapi %}
   fastapi_app:
     build: .
     command: ["uvicorn", "example_app.main:app", "--host", "0.0.0.0", "--reload"]
@@ -9,18 +9,25 @@ services:
       - "8000:8000"
     volumes:
       - ./src:/app/src
-  {% endif %}
-  {% if cookiecutter.include_metaflow %}
+{% endif %}
+{% if cookiecutter.include_metaflow %}
   metaflow_app:
     build: .
     command: ["python", "metaflow_app/spin_prototype.py"]
     volumes:
       - ./src:/app/src
-  {% endif %}
-  {% if cookiecutter.include_package %}
+{% endif %}
+{% if cookiecutter.include_package %}
   python_package:
     build: .
     command: ["python", "-m", "{{cookiecutter.package}}"]
     volumes:
       - ./src:/app/src
-  {% endif %}
+{% endif %}
+{% if cookiecutter.include_torchvision %}
+  torchvision_app:
+    build: .
+    command: ["python", "torchvision_app/torchvision_example.py"]
+    volumes:
+      - ./src:/app/src
+{% endif %}

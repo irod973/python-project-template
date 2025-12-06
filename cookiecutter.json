@@ -10,6 +10,7 @@
     "include_fastapi": true,
     "include_metaflow": true,
     "include_package": true,
+    "include_torchvision": true,
     "coverage_threshold": 80,
     "__prompts__": {
         "user": "GitHub User",
@@ -22,6 +23,7 @@
         "include_fastapi": "Include FastAPI component? (y/n)",
         "include_metaflow": "Include Metaflow component? (y/n)",
         "include_package": "Include Python package component? (y/n)",
+        "include_torchvision": "Include TorchVision example component? (y/n)",
         "coverage_threshold": "Minimum code coverage percentage (cov-fail-under)"
     }
 }

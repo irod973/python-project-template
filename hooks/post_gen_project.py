@@ -28,3 +28,7 @@ if is_false('{{cookiecutter.include_package}}'):
             for line in lines:
                 if 'publish.yml' not in line:
                     f.write(line)
+
+# Remove torchvision app if not included in template options
+if is_false('{{ cookiecutter.include_torchvision }}'):
+    shutil.rmtree('src/torchvision_app', ignore_errors=True)
