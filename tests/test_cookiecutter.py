@@ -58,8 +58,9 @@ def test_project_generation(cookies: Cookies) -> None:
         "python_version": context["python_version"],
         "include_fastapi": context["include_fastapi"],
         "include_metaflow": context["include_metaflow"],
+        "include_torchvision": context["include_torchvision"],
         "include_package": context["include_package"],
-        "coverage_threshold": context["coverage_threshold"]
+        "coverage_threshold": context["coverage_threshold"],
     }
     # - commands
     shell = Subprocess(cwd=result.project_path)
