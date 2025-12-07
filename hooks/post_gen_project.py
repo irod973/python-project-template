@@ -22,5 +22,5 @@ if is_false("{{cookiecutter.include_package}}"):
         os.remove(workflow_path)
 
 # Remove torchvision app if not included in template options
-if is_false("{{ cookiecutter.include_torchvision }}"):
+if is_false("{{cookiecutter.include_torchvision}}"):
     shutil.rmtree("src/torchvision_app", ignore_errors=True)
