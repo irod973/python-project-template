@@ -1,3 +1,4 @@
+"""Remove any unwanted optional components after project generation."""
 import os
 import shutil
 
