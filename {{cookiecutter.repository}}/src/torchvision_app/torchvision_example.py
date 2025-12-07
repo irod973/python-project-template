@@ -1,8 +1,9 @@
 from pathlib import Path
+
 import torch
-from torchvision.transforms import v2
-from torchvision.io import decode_image
 from loguru import logger
+from torchvision.io import decode_image
+from torchvision.transforms import v2
 
 torch.manual_seed(1)
 

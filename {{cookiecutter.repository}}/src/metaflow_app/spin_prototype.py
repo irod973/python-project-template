@@ -28,7 +28,7 @@ class SpinPrototypeFlow(FlowSpec):
         from io import StringIO
 
         self.rows = []
-        for row in csv.reader(StringIO(self.movie_data), delimiter=","):
+        for row in csv.reader(StringIO(self.movie_data), delimiter=","):  # type: ignore
             logger.info(f"{row=}")
             self.rows.append(row)
 

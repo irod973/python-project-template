@@ -1,5 +1,6 @@
-import shutil
 import os
+import shutil
+
 
 def is_false(val: str) -> bool:
     return val.strip().lower() in ("false", "n", "no", "0")

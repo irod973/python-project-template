@@ -31,7 +31,7 @@ def test_project_generation(cookies: Cookies) -> None:
         "license": "Apache-2.0",  # Note: needs to be a "valid SPDX identifier"
         "version": "1.0.0",
         "description": "A test project.",
-        "python_version": "3.13",
+        "python_version": "3.12",
         "include_fastapi": "y",
         "include_metaflow": "y",
         "include_package": "y",

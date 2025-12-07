@@ -33,6 +33,23 @@ Uv Integration: Effortless dependency management and packaging with [uv](https:/
 * **Comprehensive Documentation:** [pdoc](https://pdoc.dev/) generates API documentation, and Markdown files provide clear usage instructions.
 * **GitHub Workflow Integration:** Continuous integration and deployment workflows are set up using [GitHub Actions](https://github.com/features/actions), automating testing, checks, and publishing.
 
+## Development
+
+### Testing
+```shell
+uv run just test
+```
+
+### Checks
+
+This will run formatting, typing and coverage checks.
+
+```shell
+uv run just check
+```
+
+### Type checking
+
 ## Quick Start
 
 1. **Generate your project:**
