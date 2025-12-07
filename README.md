@@ -32,17 +32,14 @@ Uv Integration: Effortless dependency management and packaging with [uv](https:/
 * **uv+just Task Automation:** [just](https://github.com/casey/just) commands to simplify development workflows such as cleaning, installing, formatting, checking, building, documenting and running the project.
 * **Comprehensive Documentation:** [pdoc](https://pdoc.dev/) generates API documentation, and Markdown files provide clear usage instructions.
 * **GitHub Workflow Integration:** Continuous integration and deployment workflows are set up using [GitHub Actions](https://github.com/features/actions), automating testing, checks, and publishing.
+* Profiling: Several standard profilers are included for developers to choose from. Two popular call-stack profilers are [pyinstrument](https://github.com/joerick/pyinstrument) and [pyspy](https://github.com/benfred/py-spy). [memray](https://github.com/bloomberg/memray) is included for memory profiling. 
+* Load testing with [Locust](https://locust.io/).
 
 ## Development
 
-### Testing
-```shell
-uv run just test
-```
-
 ### Checks
 
-This will run formatting, typing and coverage checks.
+This will run all checks on this cookiecutter repo (not just the project template) as specified in the `tasks/check.just` command: code quality, test coverage, unit tests, formatting, typing, and security. 
 
 ```shell
 uv run just check

@@ -12,7 +12,6 @@ readme = "README.md"
 license = "{{cookiecutter.license}}"
 requires-python = ">={{cookiecutter.python_version}}"
 dependencies = [
-    "hatchling>=1.27.0",
     "loguru>=0.7.3",
 ]
 
@@ -47,6 +46,8 @@ dev =[
     "rust-just>=1.39.0",
     "locust>=2.31.8,<3.0.0",
     "pyinstrument>=4.7.3,<5.0.0",
+    "pyspy>=0.1.1",
+
 ]
 doc = ["pdoc>=15.0.1"]
 {% if cookiecutter.include_metaflow %}
@@ -155,7 +156,6 @@ convention = "google"
 
 # SYSTEMS
 
-# TODO: is this only for the package management?
 [build-system]
-requires = ["hatchling"]
-build-backend = "hatchling.build"
+requires = ["uv_build>=0.9.16,<0.10.0"]
+build-backend = "uv_build"
