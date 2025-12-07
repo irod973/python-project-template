@@ -35,7 +35,8 @@ def test_project_generation(cookies: Cookies) -> None:
         "include_fastapi": "y",
         "include_metaflow": "y",
         "include_package": "y",
-        "coverage_threshold": "1"
+        "include_torchvision": "y",
+        "coverage_threshold": "1",
     }
     repository = context['name'].lower().replace(' ', '-')
     package = repository.replace('-', '_')
