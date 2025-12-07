@@ -5,7 +5,7 @@ docker: docker-build docker-run
 # build docker image
 [group('docker')]
 docker-build tag="latest": package-build
-    {% raw %}docker build --tag={{REPOSITORY}}:{{tag}} .{% endraw %} -f docker/Dockerfile.python
+    {% raw %}docker build --tag={{REPOSITORY}}:{{tag}} -f docker/Dockerfile.python .{% endraw %}
 
 # start docker compose
 [group('docker')]
