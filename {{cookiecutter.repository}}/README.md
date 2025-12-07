@@ -29,10 +29,10 @@ TODO: Fill in with your project's details.
 ## Torchvision app
 
 This template includes an example torchvision app and associated dependencies.
+
+This has support for installing either CPU-only or CUDA 12.8 torch wheels via the `--extra {cpu, gpu}` uv sync argument.
 ```shell
-# Install dependencies
-uv sync --extra cpu  # or --extra cu128 if running in CUDA-enabled system
-# Then invoke docker compose	
+# Invoke docker compose	
 uv run just docker-compose torchvision_app
 ```
 {% endif %}
@@ -41,8 +41,6 @@ uv run just docker-compose torchvision_app
 
 This template includes an example Metaflow app and associated dependencies.
 ```shell
-# Install dependencies
-uv sync --group metaflow
 # Invoke docker compose	
 uv run just docker-compose metaflow_app
 ```
@@ -51,11 +49,11 @@ uv run just docker-compose metaflow_app
 ## FastAPI
 
 This template includes an example FastAPI app and associated dependencies.
+
+Note that this runs `fastapi dev` which includes auto-reload by default. This should be switched to `fastapi run` in production.
 ```shell
-# Install dependencies
-uv sync --group fastapi
 # Invoke docker compose
-uv run just docker-compose metaflow_app
+uv run just docker-compose fastapi_app
 ```
 {% endif %}
 ## Development Features

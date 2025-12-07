@@ -13,6 +13,7 @@ license = "{{cookiecutter.license}}"
 requires-python = ">={{cookiecutter.python_version}}"
 dependencies = [
     "hatchling>=1.27.0",
+    "loguru>=0.7.3",
 ]
 
 # LINKS
@@ -43,7 +44,6 @@ check = [
 ]
 commit = ["commitizen>=4.4.1", "pre-commit>=4.1.0"]
 dev =[
-    "loguru>=0.7.3",
     "rust-just>=1.39.0",
     "locust>=2.31.8,<3.0.0",
     "pyinstrument>=4.7.3,<5.0.0",
@@ -56,8 +56,7 @@ metaflow = [
 {% endif %}
 {% if cookiecutter.include_fastapi %}
 fastapi = [
-    "fastapi>=0.123.10",
-    "uvicorn>=0.38.0",
+    "fastapi[standard]>=0.123.10",
 ]
 {% endif %}
 
@@ -67,12 +66,12 @@ fastapi = [
 default-groups = ["check", "commit", "dev", "doc"]
 {% if cookiecutter.include_torchvision %}
 # torch
-# enable selecting torch wheel based on environment with uv sync --extra {cpu, cu128}
+# enable selecting torch wheel based on environment with uv sync --extra {cpu, gpu}
 # https://docs.astral.sh/uv/guides/integration/pytorch/#configuring-accelerators-with-optional-dependencies
 conflicts = [
   [
     { extra = "cpu" },
-    { extra = "cu128" },
+    { extra = "gpu" },
   ],
 ]
 
@@ -81,7 +80,7 @@ cpu = [
   "torch>=2.7.0",
   "torchvision>=0.22.0",
 ]
-cu128 = [
+gpu = [
   "torch>=2.7.0",
   "torchvision>=0.22.0",
 ]
@@ -89,11 +88,11 @@ cu128 = [
 [tool.uv.sources]
 torch = [
   { index = "pytorch-cpu", extra = "cpu" },
-  { index = "pytorch-cu128", extra = "cu128" },
+  { index = "pytorch-cu128", extra = "gpu" },
 ]
 torchvision = [
   { index = "pytorch-cpu", extra = "cpu" },
-  { index = "pytorch-cu128", extra = "cu128" },
+  { index = "pytorch-cu128", extra = "gpu" },
 ]
 
 [[tool.uv.index]]
