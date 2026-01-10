@@ -12,3 +12,6 @@ __pycache__/
 .ruff_cache/
 .pytest_cache/
 .ipynb_checkpoints/
+
+# Claude
+.claude/

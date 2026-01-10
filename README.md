@@ -31,6 +31,47 @@ Uv Integration: Effortless dependency management and packaging with [uv](https:/
 * **Comprehensive Documentation:** [pdoc](https://pdoc.dev/) generates API documentation, and Markdown files provide clear usage instructions.
 * **GitHub Workflow Integration:** Continuous integration and deployment workflows are set up using [GitHub Actions](https://github.com/features/actions), automating testing, checks, and publishing.
 
+### Syncing Projects with the Latest Template
+
+If you have older projects created from this template before recent updates, you can sync them with the latest template files using the `template_sync_cli.py` utility.
+
+#### Using the Sync Tool
+
+The sync tool updates high-priority files in your project to match the latest template:
+- `tasks/` - Task definitions for development automation
+- `justfile` - Task runner configuration
+- `.gitignore` - Git ignore patterns
+- `.python-version` - Python version specification
+
+**Basic usage:**
+
+```bash
+# Sync your project with the template
+python template_sync_cli.py --source /path/to/template --target /path/to/your-project
+
+# Preview changes without committing (dry-run)
+python template_sync_cli.py --source /path/to/template --target /path/to/your-project --dry-run
+```
+
+**With Claude Code:**
+
+```bash
+/sync-project-template --source ~/python-project-template --target ~/your-project
+```
+
+The sync tool will:
+1. Validate both source (template) and target (project) directories
+2. Copy updated files and directories
+3. Stage changes in git
+4. Create a commit with a summary of synced files
+
+#### Important Notes
+
+- Your project must be a git repository for syncing to work
+- The tool skips files that haven't changed
+- A commit is automatically created with all synced changes
+- Use `--dry-run` to preview changes before committing
+
 ## Quick Start
 
 1. **Generate your project:**
@@ -102,3 +143,5 @@ This builds a Docker image based on your [`Dockerfile`](https://github.com/fmind
 ## License
 
 The source material this is adapted from is licensed under the [MIT License](https://opensource.org/license/mit). See the [`LICENSE.txt`](https://github.com/fmind/cookiecutter-mlops-package/blob/main/LICENSE.txt) file for details.
+
+This is my Python project cookie cutter template. As you can see, it has various tools that come with it out of the box, things like using UV for dependency management, using coverage to test unit test coverage comes with rough for formatting and linting and fixes and also has several just tasks that simplify utilizing a lot of these tools. One of the problems that I face is that some of my projects that were created before I had this template don't have all of these things out of the box. But I think it's fairly simple to migrate them over. For example, adding the just tasks is simply making sure that the project has UV and then uh migrating the uh tasks subdirectory over. I'm curious if it's easy to implement a claude code agent to be able to in a sense sync this project template upstream to those projects.
