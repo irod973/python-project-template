@@ -5,12 +5,12 @@ docker: docker-build docker-run
 # build docker image
 [group('docker')]
 docker-build tag="latest": package-build
-    {% raw %}docker build --tag={{REPOSITORY}}:{{tag}} .{% endraw %}
+    {% raw %}docker build --tag={{REPOSITORY}}:{{tag}} -f docker/Dockerfile.python .{% endraw %}
 
 # start docker compose
 [group('docker')]
-docker-compose:
-    docker compose up --build
+docker-compose-service service:
+    docker compose up --build {% raw %}{{service}}{% endraw %}
 
 # run latest docker image
 [group('docker')]

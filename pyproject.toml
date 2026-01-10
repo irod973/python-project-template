@@ -39,3 +39,13 @@ update_changelog_on_bump = true
 [tool.pytest.ini_options]
 log_cli = true
 log_cli_level = "INFO"
+
+[tool.mypy]
+pretty = true
+python_version = "3.13"
+check_untyped_defs = true
+ignore_missing_imports = true
+strict = false
+disable_error_code = ["import-untyped"]
+# See https://mypy.readthedocs.io/en/stable/config_file.html#untyped-definitions-and-calls
+disallow_untyped_decorators = false
