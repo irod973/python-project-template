@@ -31,11 +31,12 @@ def test_project_generation(cookies: Cookies) -> None:
         "license": "Apache-2.0",  # Note: needs to be a "valid SPDX identifier"
         "version": "1.0.0",
         "description": "A test project.",
-        "python_version": "3.13",
+        "python_version": "3.12",
         "include_fastapi": "y",
         "include_metaflow": "y",
         "include_package": "y",
-        "coverage_threshold": "1"
+        "include_torchvision": "y",
+        "coverage_threshold": "1",
     }
     repository = context['name'].lower().replace(' ', '-')
     package = repository.replace('-', '_')
@@ -58,8 +59,9 @@ def test_project_generation(cookies: Cookies) -> None:
         "python_version": context["python_version"],
         "include_fastapi": context["include_fastapi"],
         "include_metaflow": context["include_metaflow"],
+        "include_torchvision": context["include_torchvision"],
         "include_package": context["include_package"],
-        "coverage_threshold": context["coverage_threshold"]
+        "coverage_threshold": context["coverage_threshold"],
     }
     # - commands
     shell = Subprocess(cwd=result.project_path)

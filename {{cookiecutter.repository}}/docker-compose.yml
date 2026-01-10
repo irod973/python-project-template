@@ -1,26 +1,62 @@
 # https://docs.docker.com/compose/compose-file/
 
 services:
-  {% if cookiecutter.include_fastapi %}
+  python:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.python
+    volumes:
+      - ./pyproject.toml:/app/pyproject.toml
+      - ./uv.lock:/app/uv.lock
+{% if cookiecutter.include_fastapi %}
   fastapi_app:
-    build: .
-    command: ["uvicorn", "example_app.main:app", "--host", "0.0.0.0", "--reload"]
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.python
+      args:
+        UV_SYNC_OPTIONS: "--group fastapi"
+    command: ["fastapi", "dev", "fastapi_app/main.py", "--host", "0.0.0.0"]
     ports:
       - "8000:8000"
     volumes:
-      - ./src:/app/src
-  {% endif %}
-  {% if cookiecutter.include_metaflow %}
+      - ./src/fastapi_app:/app/fastapi_app
+      - ./pyproject.toml:/app/pyproject.toml
+      - ./uv.lock:/app/uv.lock
+{% endif %}
+{% if cookiecutter.include_metaflow %}
   metaflow_app:
-    build: .
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.python
+      args:
+        UV_SYNC_OPTIONS: "--group metaflow"
     command: ["python", "metaflow_app/spin_prototype.py"]
     volumes:
-      - ./src:/app/src
-  {% endif %}
-  {% if cookiecutter.include_package %}
+      - ./src/metaflow_app:/app/metaflow_app
+      - ./pyproject.toml:/app/pyproject.toml
+      - ./uv.lock:/app/uv.lock
+{% endif %}
+{% if cookiecutter.include_package %}
   python_package:
-    build: .
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.python
     command: ["python", "-m", "{{cookiecutter.package}}"]
     volumes:
-      - ./src:/app/src
-  {% endif %}
+      - ./src/{{cookiecutter.package}}:/app/{{cookiecutter.package}}
+      - ./pyproject.toml:/app/pyproject.toml
+      - ./uv.lock:/app/uv.lock
+{% endif %}
+{% if cookiecutter.include_torchvision %}
+  torchvision_app:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.python
+      args:
+        UV_SYNC_OPTIONS: "--extra cpu"
+    command: ["python", "torchvision_app/torchvision_example.py"]
+    volumes:
+      - ./src/torchvision_app:/app/torchvision_app
+      - ./pyproject.toml:/app/pyproject.toml
+      - ./uv.lock:/app/uv.lock
+{% endif %}

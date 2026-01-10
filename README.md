@@ -2,11 +2,9 @@
 
 A python project template to simplify project setup. Adapted from https://github.com/fmind/cookiecutter-mlops-package
 
-This template copy omits the MLFlow functionality. Use the linked mlops-package template if this is desired 
-
 The template provides a robust foundation for building, testing, packaging, and deploying Python packages and Docker Images. Adapt it to your project's needs; the source material is MLOps-focused but is suitable for a wide array of Python projects.
 
-**Source resources**:
+**Original resources**:
 - **[MLOps Coding Course (Learning)](https://mlops-coding-course.fmind.dev/)**: Learn how to create, develop, and maintain a state-of-the-art MLOps code base.
 - **[MLOps Python Package (Example)](https://github.com/fmind/mlops-python-package)**: Kickstart your MLOps initiative with a flexible, robust, and productive Python package.
 
@@ -18,9 +16,13 @@ This template equips you with the essentials for creating, testing, and packagin
 
 You have the freedom to structure your `src/` and `tests/` directories according to your preferences. Alternatively, you can draw inspiration from the structure used in the [MLOps Python Package](https://github.com/fmind/mlops-python-package) project for a ready-made implementation.
 
+## Applications
+
+This template includes a few optional application skeletons. See the nested README for details.
+
 ## Key Features
 
-(This section was copied into the created project's README so tool info is available to users.)
+This section was copied into the created project's README so tool info is available.
 
 * **Streamlined Project Structure:** A well-defined directory layout for source code, tests, documentation, tasks, and Docker configurations.
 Uv Integration: Effortless dependency management and packaging with [uv](https://docs.astral.sh/uv/).
@@ -30,6 +32,20 @@ Uv Integration: Effortless dependency management and packaging with [uv](https:/
 * **uv+just Task Automation:** [just](https://github.com/casey/just) commands to simplify development workflows such as cleaning, installing, formatting, checking, building, documenting and running the project.
 * **Comprehensive Documentation:** [pdoc](https://pdoc.dev/) generates API documentation, and Markdown files provide clear usage instructions.
 * **GitHub Workflow Integration:** Continuous integration and deployment workflows are set up using [GitHub Actions](https://github.com/features/actions), automating testing, checks, and publishing.
+* Profiling: Several standard profilers are included for developers to choose from. Two popular call-stack profilers are [pyinstrument](https://github.com/joerick/pyinstrument) and [pyspy](https://github.com/benfred/py-spy). [memray](https://github.com/bloomberg/memray) is included for memory profiling. 
+* Load testing with [Locust](https://locust.io/).
+
+## Development
+
+### Checks
+
+This will run all checks on this cookiecutter repo (not just the project template) as specified in the `tasks/check.just` command: code quality, test coverage, unit tests, formatting, typing, and security. 
+
+```shell
+uv run just check
+```
+
+### Type checking
 
 ### Syncing Projects with the Latest Template
 
@@ -84,7 +100,7 @@ uv tool install cookiecutter
 cookiecutter gh:irod973/python-project-template
 ```
 
-You'll be prompted for the following variables:
+You'll be prompted for the following variables.
 
 - `user`: Your GitHub username.
 - `name`: The name of your project.
@@ -94,6 +110,10 @@ You'll be prompted for the following variables:
 - `version`: The initial version of your project.
 - `description`: A brief description of your project.
 - `python_version`: The Python version to use (e.g., 3.12).
+- `include_fastapi`: Whether to include a sample FastAPI application.
+- `include_metaflow`: Whether to include a sample Metaflow application.
+- `include_torchvision`: Whether to include a sample Torchvision application.
+- `include_package`: Whether to include a sample application for publishing a Python package.
 
 2. **Initialize a git repository:**
 
@@ -113,7 +133,7 @@ git init
 - `src/{{cookiecutter.package}}`: Your Python package source code.
 - `tests/`: Unit tests for your package.
 - `tasks/`: `just` commands for automation.
-- `Dockerfile`: Configuration for building your Docker image.
+- `docker/Dockerfile.python`: Configuration for building your Docker image.
 - `docker-compose.yml`: Orchestration file for running your project.
 
 4. **Start developing!**
@@ -129,16 +149,6 @@ Use the provided `just` commands to manage your development workflow:
 - `uv run just install`: Install dependencies, pre-commit hooks, and GitHub rulesets.
 - `uv run just package`: Build your Python package.
 - `uv run just project`: Run the project in the CLI.
-
-## Example Usage
-
-### Building and Running Your Docker Image
-
-```bash
-invoke containers
-```
-
-This builds a Docker image based on your [`Dockerfile`](https://github.com/fmind/cookiecutter-mlops-package/blob/main/%7B%7Bcookiecutter.repository%7D%7D/Dockerfile) and runs it.
 
 ## License
 
