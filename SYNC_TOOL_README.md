@@ -40,6 +40,8 @@ uv run python template_sync_cli.py \
 
 ### Using Claude Code Command
 
+A Claude Code command is set up to allow running inside Claude Code sessions. See `.claude/commands/sync-project-template.md` for details.
+
 ```bash
 /sync-project-template ~/target-project
 ```
