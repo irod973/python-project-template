@@ -153,5 +153,3 @@ Use the provided `just` commands to manage your development workflow:
 ## License
 
 The source material this is adapted from is licensed under the [MIT License](https://opensource.org/license/mit). See the [`LICENSE.txt`](https://github.com/fmind/cookiecutter-mlops-package/blob/main/LICENSE.txt) file for details.
-
-This is my Python project cookie cutter template. As you can see, it has various tools that come with it out of the box, things like using UV for dependency management, using coverage to test unit test coverage comes with rough for formatting and linting and fixes and also has several just tasks that simplify utilizing a lot of these tools. One of the problems that I face is that some of my projects that were created before I had this template don't have all of these things out of the box. But I think it's fairly simple to migrate them over. For example, adding the just tasks is simply making sure that the project has UV and then uh migrating the uh tasks subdirectory over. I'm curious if it's easy to implement a claude code agent to be able to in a sense sync this project template upstream to those projects.
