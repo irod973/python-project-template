@@ -47,6 +47,47 @@ uv run just check
 
 ### Type checking
 
+### Syncing Projects with the Latest Template
+
+If you have older projects created from this template before recent updates, you can sync them with the latest template files using the `template_sync_cli.py` utility.
+
+#### Using the Sync Tool
+
+The sync tool updates high-priority files in your project to match the latest template:
+- `tasks/` - Task definitions for development automation
+- `justfile` - Task runner configuration
+- `.gitignore` - Git ignore patterns
+- `.python-version` - Python version specification
+
+**Basic usage:**
+
+```bash
+# Sync your project with the template
+python template_sync_cli.py --source /path/to/template --target /path/to/your-project
+
+# Preview changes without committing (dry-run)
+python template_sync_cli.py --source /path/to/template --target /path/to/your-project --dry-run
+```
+
+**With Claude Code:**
+
+```bash
+/sync-project-template --source ~/python-project-template --target ~/your-project
+```
+
+The sync tool will:
+1. Validate both source (template) and target (project) directories
+2. Copy updated files and directories
+3. Stage changes in git
+4. Create a commit with a summary of synced files
+
+#### Important Notes
+
+- Your project must be a git repository for syncing to work
+- The tool skips files that haven't changed
+- A commit is automatically created with all synced changes
+- Use `--dry-run` to preview changes before committing
+
 ## Quick Start
 
 1. **Generate your project:**
